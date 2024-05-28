@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
     return res.redirect("/register");
   }
   if (req.path.includes("/admin") && userPayload.role !== "admin") {
-    return res.status(403).json({ message: "Unauthorized user!" });
+    throw new Error("Unauthorized user!");
   }
 
   res.locals.userId = userPayload.id;

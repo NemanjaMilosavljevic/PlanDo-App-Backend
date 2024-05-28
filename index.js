@@ -26,6 +26,11 @@ app.use(analitycsRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error.message);
+  if (error.message === "Unauthorized user!") {
+    res.status(403).json({ errorMessage: "Unauthorized user!" });
+    return;
+  }
+
   res.status(400).json({ errorMessage: error.message });
 });
 
