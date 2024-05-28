@@ -10,7 +10,7 @@ const taskRoutes = require("./routes/tasks");
 const analitycsRoutes = require("./routes/analitycs");
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND_APP_ORIGIN);
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PATCH, PUT, DELETE, OPTIONS"

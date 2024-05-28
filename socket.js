@@ -4,7 +4,7 @@ module.exports = {
   init: (httpServer) => {
     io = require("socket.io")(httpServer, {
       cors: {
-        origin: "http://localhost:3000",
+        origin: process.env.FRONTEND_APP_ORIGIN,
         allowedHeaders: ["Content-Type", "Authorization"],
       },
     });

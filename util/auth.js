@@ -12,7 +12,7 @@ exports.verifyPassword = async (newPassword, hashedPassword) => {
 };
 
 exports.createToken = (payload) => {
-  const token = jwt.sign(payload, "secretkey", { expiresIn: "1h" });
+  const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "1h" });
 
   return token;
 };
@@ -24,5 +24,5 @@ exports.decodeToken = (userToken) => {
 };
 
 exports.validateToken = (userToken) => {
-  return jwt.verify(userToken, "secretkey");
+  return jwt.verify(userToken, process.env.SECRET_KEY);
 };
