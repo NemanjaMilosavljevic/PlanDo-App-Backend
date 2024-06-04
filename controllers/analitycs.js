@@ -5,7 +5,7 @@ exports.filterTasks = (req, res, next) => {
   const priorityFilter = req.query.priority;
   const userId = res.locals.userId;
 
-  Task.filterBy(monthFilter, priorityFilter, userId)
+  Task.filterByMonthAndPriority(monthFilter, priorityFilter, userId)
     .then((filterTasks) => {
       return res.status(200).json({
         filteredTasks: filterTasks[0],

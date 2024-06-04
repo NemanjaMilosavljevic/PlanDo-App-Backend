@@ -48,8 +48,8 @@ module.exports = class Task {
     return taskQueries.updateStatusOnDnD(status, taskId);
   }
 
-  static filterBy(month, priority, userId) {
-    return analitycsQueries.filterByQuery(month, priority, userId);
+  static filterByMonthAndPriority(month, priority, userId) {
+    return analitycsQueries.filterTasks(month, priority, userId);
   }
 
   static addOrderIndex(orderIndex, taskId) {

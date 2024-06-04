@@ -1,6 +1,6 @@
 const db = require("../util/database");
 
-exports.filterByQuery = (month, priority, userId) => {
+exports.filterTasks = (month, priority, userId) => {
   if (month == "All" && priority == "All") {
     return db.execute(
       `SELECT t.id, t.created_on, t.priority, t.status, t.title, t.description, t.visibleId, t.due
