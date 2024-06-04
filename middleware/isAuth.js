@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
   auth.validateToken(userToken);
 
   if (!userToken) {
-    return res.redirect("/register");
+    throw new Error("Unauthorized user!");
   }
   if (req.path.includes("/admin") && userPayload.role !== "admin") {
     throw new Error("Unauthorized user!");

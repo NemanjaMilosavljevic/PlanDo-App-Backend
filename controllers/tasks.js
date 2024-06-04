@@ -34,7 +34,6 @@ exports.createTask = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       next(new Error(err));
     });
 };
@@ -47,7 +46,6 @@ exports.deleteTask = (req, res, next) => {
       return res.status(200).json({ message: "Task was succesfully deleted!" });
     })
     .catch((err) => {
-      console.log(err);
       next(new Error(err));
     });
 };
@@ -63,7 +61,6 @@ exports.updateTask = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       next(new Error(err));
     });
 };
@@ -85,7 +82,6 @@ exports.updateTaskWheneDragTask = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       next(new Error(err));
     });
 };

@@ -3,6 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
+const Task = require("./models/tasks");
+const User = require("./models/users");
+
 app.use(bodyParser.json());
 
 const userRoutes = require("./routes/users");
@@ -25,7 +28,6 @@ app.use(taskRoutes);
 app.use(analitycsRoutes);
 
 app.use((error, req, res, next) => {
-  console.log(error.message);
   if (error.message === "Unauthorized user!") {
     res.status(403).json({ errorMessage: "Unauthorized user!" });
     return;
@@ -34,5 +36,17 @@ app.use((error, req, res, next) => {
   res.status(400).json({ errorMessage: error.message });
 });
 
-const server = app.listen(5000);
-const io = require("./socket").init(server);
+User.createUsersTable()
+  .then((res) => {
+    return Task.createTable();
+  })
+  .then((res) => {
+    return User.createTableUsersTasks();
+  })
+  .then((res) => {
+    const server = app.listen(5000);
+    const io = require("./socket").init(server);
+  })
+  .catch((err) => {
+    next(new Error(err));
+  });

@@ -37,7 +37,6 @@ exports.createUser = async (req, res, next) => {
         .json({ message: "New user was succesfully created!" });
     })
     .catch((err) => {
-      console.log(err);
       next(new Error(err));
     });
 };
@@ -69,7 +68,6 @@ exports.deleteUser = (req, res, next) => {
         );
       }
 
-      //websocket- salje se notifikacija svim userima da je user izbrisan
       io.getIO().emit("users", {
         action: "delete",
         deletedUser: userId,
@@ -82,7 +80,6 @@ exports.deleteUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       next(new Error(err));
     });
 };

@@ -1,6 +1,5 @@
 const db = require("../util/database");
 
-//query za filtering
 exports.filterByQuery = (month, priority, userId) => {
   if (month == "All" && priority == "All") {
     return db.execute(

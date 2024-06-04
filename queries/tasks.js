@@ -1,5 +1,25 @@
 const db = require("../util/database");
 
+exports.createTaskTable = () => {
+  return db.execute(
+    `CREATE TABLE IF NOT EXISTS tasks(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        title VARCHAR(200) NOT NULL,
+        description TEXT NOT NULL,
+        priority ENUM('Important', 'Not-important'),
+        due DATE NOT NULL,
+        status ENUM('To Do', 'In progress', 'Done'),
+        visibleId VARCHAR(50) NOT NULL,
+        user_id INT,
+        created_on DATE DEFAULT (CURRENT_DATE),
+        order_index INT DEFAULT NULL,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+        INDEX month_priority (created_on, priority)
+    )
+    `
+  );
+};
+
 exports.createTaskQuery = (
   title,
   description,
@@ -50,7 +70,6 @@ exports.updateTaskQuery = (
   );
 };
 
-// update task on drag and drop
 exports.updateStatusOnDnD = (status, taskId) => {
   return db.execute(`UPDATE tasks SET  status = ? WHERE id = ?`, [
     status,
