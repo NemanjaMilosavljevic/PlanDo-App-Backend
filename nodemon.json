@@ -1,0 +1,10 @@
+{
+  "env": {
+    "HOST": "localhost",
+    "USER": "root",
+    "DATABASE": "rest_project",
+    "PASSWORD": "Nemanja1.",
+    "FRONTEND_APP_ORIGIN": "http://localhost:3000",
+    "SECRET_KEY": "secretkey"
+  }
+}
